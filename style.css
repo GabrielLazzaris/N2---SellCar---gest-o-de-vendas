@@ -94,7 +94,6 @@ label,
   font-size: 13px;
 }
 
-.panel,
 .painel,
 .carro-card,
 .modal,
@@ -106,7 +105,6 @@ label,
   padding: 16px;
 }
 
-.panel-title,
 .painel-title,
 .section-title,
 .modal-title {
