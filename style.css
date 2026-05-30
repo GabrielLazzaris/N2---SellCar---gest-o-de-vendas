@@ -239,3 +239,45 @@ dialog::backdrop{
   from{transform:translateY(0)} 
   to{transform:translateY(-6px)} 
 }
+
+#toast{
+  position:fixed; 
+  right:2rem; 
+  bottom:2rem;
+  padding:.8rem 1rem;
+  border-radius:6px;
+  background:var(--accent); 
+  color:#fff; 
+}
+
+.visually-hidden{
+  position:absolute; 
+  width:1px; 
+  height:1px; 
+  overflow:hidden; 
+}
+
+@media(max-width:900px){
+  header,
+  .toolbar{
+    flex-direction:column; 
+    height:auto; 
+    padding:1rem;
+  }
+  main{
+    grid-template-columns:1fr; 
+  }
+  .header-stats{
+    flex-wrap:wrap; 
+    justify-content:center; 
+  }
+  .search-bar{
+    width:100%; 
+  }
+  .row2,
+  .card-actions,
+  .modal-actions,
+  .car-details{
+    grid-template-columns:1fr; 
+  }
+}
