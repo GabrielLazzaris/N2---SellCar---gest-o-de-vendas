@@ -59,7 +59,6 @@ main{
 }
  
 .logo span,
-.panel-title,
 .painel-title,
 .section-title,
 .modal-title,
@@ -90,7 +89,6 @@ main{
   font-size:1.2rem; 
 }
 
-.panel,
 .painel,
 .carro-card,
 .modal,
@@ -101,7 +99,7 @@ main{
   border-radius:10px; 
   padding:1rem; 
 }
-.panel-title,
+
 .painel-title,
 .section-title,
 .modal-title{
