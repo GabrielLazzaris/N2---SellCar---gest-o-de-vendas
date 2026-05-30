@@ -150,3 +150,20 @@ button:hover{
   border:1px solid var(--border);
   color:var(--muted); 
 }
+
+.row2,
+.card-actions,
+.modal-actions,
+.car-details{
+  display:grid; 
+  grid-template-columns:1fr 1fr; 
+  gap:.5rem; 
+}
+
+.toolbar{
+  gap:1rem;
+  margin-bottom:1rem;
+}
+.search-bar{
+  width:260px;
+}
