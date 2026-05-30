@@ -167,3 +167,75 @@ button:hover{
 .search-bar{
   width:260px;
 }
+
+#carros-grid{
+  display:grid; 
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:1rem; 
+}
+.carro-card{
+  transition:.2s; 
+}
+.card-header{
+  padding-bottom:1rem; 
+  margin-bottom:1rem; 
+  border-bottom:1px solid var(--border); 
+}
+.car-name,
+.detail-value{
+  font-weight:700;
+}
+.car-details,
+.car-price{
+  margin-bottom:1rem; 
+}
+
+.status-badge{
+  padding:.3rem .6rem; 
+  border-radius:5px; 
+  font-size:.7rem; 
+  font-weight:700; 
+}
+.status-disponivel{
+  background:rgba(34,197,94,.1);
+  color:var(--green); 
+.status-vendido{
+  background:rgba(239,68,68,.1); 
+  color:var(--red); 
+}
+.status-reservado,
+.btn-edit{
+  background:rgba(37,99,235,.1); 
+  color:#60a5fa; 
+}
+.btn-del{
+  background:rgba(239,68,68,.1); 
+  color:var(--red);
+}
+
+dialog{
+  border:none; 
+  background:transparent; 
+}
+dialog::backdrop{
+  background:rgba(0,0,0,.7); 
+.modal{
+  width:90%; 
+  max-width:500px; 
+  margin:8vh auto; 
+}
+
+.loading-dot{
+  width:8px; 
+  height:8px;
+  border-radius:50%;
+  background:var(--accent); 
+  display:inline-block; 
+  animation:bounce .8s infinite alternate; 
+}
+.loading-dot:nth-child(2){animation-delay:.2s} 
+.loading-dot:nth-child(3){animation-delay:.4s} 
+@keyframes bounce{
+  from{transform:translateY(0)} 
+  to{transform:translateY(-6px)} 
+}
