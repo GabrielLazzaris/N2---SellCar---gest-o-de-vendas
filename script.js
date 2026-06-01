@@ -151,7 +151,41 @@ function cadastrarCarro() {
   document.getElementById('f-preco').value = '';
 }
 
+function abrirEdicao(id) {
+  const post = posts.find(p => p.id === id);
+  const extras = gerarDadosExtras(post.id);
+
+  document.getElementById('edit-id').value = post.id;
+  document.getElementById('edit-modelo').value = post.title;
+  document.getElementById('edit-ano').value = post.ano || extras.ano;
+  document.getElementById('edit-cor').value = post.cor || extras.cor;
+  document.getElementById('edit-preco').value = post.preco || extras.preco;
+  document.getElementById('edit-status').value = post.status || extras.status;
+  document.getElementById('edit-vendedor').value = post.userId || '';
+
+  document.getElementById('modal').showModal();
+}
+
+function salvarEdicao() {
+  const id = Number(document.getElementById('edit-id').value);
+  const post = posts.find(p => p.id === id);
+
+  post.title = document.getElementById('edit-modelo').value.trim();
+  post.ano = Number(document.getElementById('edit-ano').value);
+  post.cor = document.getElementById('edit-cor').value.trim();
+  post.preco = Number(document.getElementById('edit-preco').value);
+  post.status = document.getElementById('edit-status').value;
+  post.userId = Number(document.getElementById('edit-vendedor').value);
+
+  document.getElementById('modal').close();
+  exibirPosts(posts);
+}
+
 document.getElementById('btn-cadastrar').addEventListener('click', cadastrarCarro);
+document.getElementById('btn-salvar-edicao').addEventListener('click', salvarEdicao);
+document.getElementById('btn-cancelar-edicao').addEventListener('click', function() {
+  document.getElementById('modal').close();
+});
 
 buscarPosts();
 buscarUsuarios();
