@@ -104,5 +104,10 @@ function atualizarEstatisticas() {
   document.getElementById('stat-vend').textContent = vendidos.length;
 }
 
+function removerCarro(id) {
+  posts = posts.filter(p => p.id !== id);
+  exibirPosts(posts);
+}
+
 buscarPosts();
 buscarUsuarios();
