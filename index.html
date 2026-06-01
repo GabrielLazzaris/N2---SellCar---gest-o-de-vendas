@@ -23,8 +23,10 @@
 
     <main>
 
-        <aside class="sidebar">
-            <section class="painel" style="margin-bottom:1.2rem">
+        <!-- LINHA DO TOPO: Novo Veículo + Vendedores lado a lado -->
+        <div class="top-row">
+
+            <section class="painel">
                 <h2 class="painel-title">Novo veículo</h2>
 
                 <fieldset style="border:none;padding:0;margin:0">
@@ -39,6 +41,7 @@
                             <input id="f-ano" type="number" placeholder="2024" min="1900" max="2026" />
                         </div>
                     </div>
+
                     <div class="field">
                         <label for="f-cor">Cor</label>
                         <input id="f-Cor" type="text" placeholder="branco" />
@@ -49,59 +52,58 @@
                     </div>
                     <div class="field">
                         <label for="f-status">Status</label>
-                        <select id="f-status" type="text">
+                        <select id="f-status">
                             <option value="disponivel">Disponível</option>
                             <option value="reservado">Reservado</option>
                             <option value="vendido">Vendido</option>
                         </select>
-                        <div class="field">
-                            <label class for="f-vendedor">Vendedor Responsável</label>
-                            <select id="f-vendedor">
-                                <option value="">carregando...</option>
-                            </select>
-                        </div>
                     </div>
-
+                    <div class="field">
+                        <label for="f-vendedor">Vendedor Responsável</label>
+                        <select id="f-vendedor">
+                            <option value="">carregando...</option>
+                        </select>
+                    </div>
                 </fieldset>
 
                 <button class="btn btn-primary" id="btn-cadastrar">CADASTRAR VEÍCULO</button>
             </section>
 
-            <section class="painel">
-                <h2 class="painel-title"> Vendedores</h2>
+            <section class="painel vendedores-painel">
+                <h2 class="painel-title">Vendedores</h2>
                 <ul class="vendedor-list" id="list-user" style="list-style:none;padding:0;margin:0">
                     <li style="color:var(--muted);font-size:.85rem">Carregando da API...</li>
                 </ul>
             </section>
 
-            <section class="content">
+        </div>
+        <!-- FIM DA LINHA DO TOPO -->
 
-                <header class="toolbar">
-                    <h2 class="section-title"> Estoque</h2>
+        <!-- ESTOQUE: largura total, abaixo -->
+        <section class="content">
+            <header class="toolbar">
+                <h2 class="section-title">Estoque</h2>
+                <search class="search-bar">
+                    <label for="busca" class="visually-hidden">Buscar veículo</label>
+                    <input type="search" id="busca" placeholder="Buscar veículo..." />
+                </search>
+            </header>
 
+            <div id="carros-grid">
+                <output aria-live="polite">
+                    <span class="loading-dot"></span>
+                    <span class="loading-dot"></span>
+                    <span class="loading-dot"></span>
+                </output>
+            </div>
+        </section>
 
-                    <search class="search-bar">
-                        <label for="busca" class="visually-hidden">Buscar veículo</label>
-                        <input type="search" id="busca" placeholder="Buscar veículo..." />
-                    </search>
-                </header>
-
-
-                <div id="carros-grid">
-
-                    <output aria-live="polite">
-                        <span class="loading-dot"></span>
-                        <span class="loading-dot"></span>
-                        <span class="loading-dot"></span>
-                    </output>
-                </div>
-            </section>
     </main>
 
 
     <dialog class="modal-overlay" id="modal">
         <article class="modal">
-            <h2 class="modal-title"> Editar Veículo</h2>
+            <h2 class="modal-title">Editar Veículo</h2>
 
             <fieldset style="border:none;padding:0;margin:0">
                 <input type="hidden" id="edit-id" />
@@ -132,7 +134,6 @@
                 </div>
             </fieldset>
 
-
             <footer class="modal-actions">
                 <button class="btn btn-primary" id="btn-salvar-edicao">SALVAR</button>
                 <button class="btn btn-cancel" id="btn-cancelar-edicao">CANCELAR</button>
@@ -143,14 +144,6 @@
     <output id="toast" aria-live="assertive" aria-atomic="true"></output>
 
     <script src="script.js"></script>
-
-    </fieldset>
-
-    </section>
-
-    </aside>
-
-    </main>
 
 </body>
 

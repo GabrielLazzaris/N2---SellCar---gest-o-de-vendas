@@ -41,64 +41,121 @@ main {
   max-width: 1300px;
   margin: auto;
   padding: 32px;
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 16px;
-}
-
-.sidebar,
-.vendedor-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.logo {
-  font: 32px 'Bebas Neue', sans-serif;
-  letter-spacing: 2px;
+/* ── LINHA DO TOPO: Novo Veículo + Vendedores lado a lado ── */
+.top-row {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 16px;
+  align-items: start;
 }
 
-.logo span,
-.painel-title,
-.section-title,
-.modal-title,
-.car-price,
-.header-stats strong {
-  color: var(--accent);
+/* Vendedores: lista com scroll se crescer demais */
+.vendedores-painel .vendedor-list {
+  max-height: 370px;
+  overflow-y: auto;
 }
 
-.header-stats {
-  display: flex;
+.vendedor-list li {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+/* ── ESTOQUE: largura total ── */
+.content {
+  width: 100%;
+}
+
+/* Grid de cards em fileira, sem crescer demais na vertical */
+#carros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 16px;
 }
 
-.header-stats div {
-  min-width: 120px;
-  text-align: center;
-  padding: 11px 16px;
-  border-radius: 10px;
-  background: var(--bg);
+/* ── CARDS ── */
+.car-card {
+  background: var(--card);
   border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  transition: border-color .2s ease, box-shadow .2s ease;
 }
 
-.header-stats strong {
-  display: block;
-  font-size: 19px;
+.car-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
 }
 
-.header-stats div,
-label,
-.detail-label,
-.car-vendor {
+.car-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  gap: 8px;
+}
+
+.car-modelo {
+  font-weight: 700;
+  font-size: .95rem;
+  /* corta títulos muito longos */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.car-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: .85rem;
   color: var(--muted);
-  font-size: 13px;
+  margin-bottom: 14px;
 }
 
-.painel,
-.carro-card,
-.modal,
-.vendedor-list li,
-.detail-item {
+.car-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* ── BADGES ── */
+.badge {
+  padding: 4px 9px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge-disponivel {
+  background: rgba(34, 197, 94, .1);
+  color: var(--green);
+}
+
+.badge-vendido {
+  background: rgba(239, 68, 68, .1);
+  color: var(--red);
+}
+
+.badge-reservado {
+  background: rgba(37, 99, 235, .1);
+  color: #60a5fa;
+}
+
+/* ── PAINÉIS ── */
+.painel {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -110,8 +167,10 @@ label,
 .modal-title {
   margin-bottom: 16px;
   text-transform: uppercase;
+  color: var(--accent);
 }
 
+/* ── FORMS ── */
 .field {
   margin-bottom: 14px;
 }
@@ -134,9 +193,7 @@ textarea {
   border: 1px solid var(--border);
   color: var(--text);
   padding: 13px;
-  transition:
-    border-color .2s ease,
-    background .2s ease;
+  transition: border-color .2s ease, background .2s ease;
 }
 
 input:focus,
@@ -167,16 +224,11 @@ button:hover {
   color: var(--muted);
 }
 
-.row2,
-.card-actions,
-.modal-actions,
-.car-details {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
+/* ── TOOLBAR / BUSCA ── */
 .toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 16px;
   margin-bottom: 16px;
 }
@@ -185,137 +237,79 @@ button:hover {
   width: 260px;
 }
 
-#carros-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+/* ── LOGO / HEADER ── */
+.logo {
+  font: 32px 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.header-stats {
+  display: flex;
   gap: 16px;
 }
 
-.carro-card {
-  transition:
-    border-color .2s ease,
-    box-shadow .2s ease;
+.header-stats div {
+  min-width: 120px;
+  text-align: center;
+  padding: 11px 16px;
+  border-radius: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
 }
 
-.carro-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+.header-stats strong {
+  display: block;
+  font-size: 19px;
+  color: var(--accent);
 }
 
-.card-header {
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid var(--border);
-}
-
-.car-name,
-.detail-value {
-  font-weight: 700;
-}
-
-.car-details,
-.car-price {
-  margin-bottom: 16px;
-}
-
-.status-badge {
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.status-disponivel {
-  background: rgba(34, 197, 94, .1);
-  color: var(--green);
-}
-
-.status-vendido {
-  background: rgba(239, 68, 68, .1);
-  color: var(--red);
-}
-
-.status-reservado,
-.btn-edit {
-  background: rgba(37, 99, 235, .1);
-  color: #60a5fa;
-}
-
-.btn-del {
-  background: rgba(239, 68, 68, .1);
-  color: var(--red);
-}
-
+/* ── MODAL ── */
 dialog {
   border: none;
   background: transparent;
 }
 
 dialog::backdrop {
-  background: rgba(0, 0, 0, .7);
+  background: rgba(0,0,0,.7);
 }
 
 .modal {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
   width: 90%;
   max-width: 500px;
   margin: 8vh auto;
 }
 
-.loading-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  display: inline-block;
+.modal-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 16px;
 }
 
-#toast {
-  position: fixed;
-  right: 32px;
-  bottom: 32px;
-  padding: 13px 16px;
-  border-radius: 6px;
-  background: var(--accent);
-  color: #fff;
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
 
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+label {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 5px;
 }
 
-@media(max-width:900px) {
-
-  header,
-  .toolbar {
-    flex-direction: column;
-    height: auto;
-    padding: 16px;
-  }
-
-  main {
-    grid-template-columns: 1fr;
-  }
-
-  .header-stats {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .search-bar {
-    width: 100%;
-  }
-
-  .row2,
-  .card-actions,
-  .modal-actions,
-  .car-details {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* ── TOAST ── */
 #toast {
   position: fixed;
   bottom: 2rem;
@@ -332,4 +326,54 @@ dialog::backdrop {
 
 #toast.toast-visivel {
   opacity: 1;
+}
+
+/* ── LOADING DOTS ── */
+.loading-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+}
+
+/* ── ACESSIBILIDADE ── */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 900px) {
+  header,
+  .toolbar {
+    flex-direction: column;
+    height: auto;
+    padding: 16px;
+  }
+
+  .top-row {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    padding: 16px;
+  }
+
+  .header-stats {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .row2,
+  .modal-actions,
+  .car-actions {
+    grid-template-columns: 1fr;
+  }
 }
