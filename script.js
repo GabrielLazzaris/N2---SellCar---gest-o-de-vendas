@@ -187,5 +187,20 @@ document.getElementById('btn-cancelar-edicao').addEventListener('click', functio
   document.getElementById('modal').close();
 });
 
+document.getElementById('busca').addEventListener('input', function() {
+  const termo = this.value.toLowerCase().trim();
+
+  const filtrados = posts.filter(p => {
+    const extras = gerarDadosExtras(p.id);
+    const modelo = p.title.toLowerCase();
+    const cor = (p.cor || extras.cor).toLowerCase();
+    const status = (p.status || extras.status).toLowerCase();
+
+    return modelo.includes(termo) || cor.includes(termo) || status.includes(termo);
+  });
+
+  exibirPosts(filtrados);
+});
+
 buscarPosts();
 buscarUsuarios();
